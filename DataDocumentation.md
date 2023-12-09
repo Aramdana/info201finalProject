@@ -9,6 +9,9 @@ https://www.census.gov/geographies/reference-files/time-series/demo/metro-micro/
 ![Screenshot 2023-12-08 212212](https://github.com/Aramdana/info201finalProject/assets/42353199/c2e5bf39-8f54-4b00-85ff-b150304656a8)
 
 ### Basic Summary Statistics
+
 83 rows
+
 17 columns
+
 1 NA value
