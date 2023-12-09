@@ -1,0 +1,237 @@
+---
+title: "INFO 201: Heart Disease Final Story"
+author: "Group AH1: Anika Rao, Taylor Hansen, Adam Sebhat, Sree Patti"
+date: "2023-12-09"
+output: html_document
+---
+
+### Introduction
+  Heart disease currently stands as a critical issue in public health in the United States. Around 695,000 Americans died of heart disease in 2021 according to the CDC. That's 1 in every 5 deaths, making it the leading killer in this country. With this research, our aim is to find out what factors lead to the prevalence of heart disease-related deaths in the United states and to uncover meaningful narratives within our data.
+  
+  Our interest in heart disease is not only for academic reasons. It is to find reasoning and statistical evidence that can help point us to the issues that take such a significant toll on our communities. We chose this research topic because we know this is a very urgent problem in the United States, proven by the substantial number of fatalities associated with heart disease.
+  
+  There is already much knowledge on heart disease, with countless studies, articles, and research done on what factors lead to heart disease and specifically which factors cause a higher risk. It's known that lifestyle choices, eating habits, smoking, genetics, income, and location are all factors that can have an effect on whether a person gets heart disease, but we would like to find out which specific factors lead to a higher mortality rate. According to WHO, over 4 out of 5 deaths related to heart disease are caused by heart attack and stroke, with around half of all Americans (47%) having at least 1 of 3 key risk factors for heart disease. These can include high blood pressure, high cholesterol, and smoking, according to the CDC. However we want to further our own research with a dataset of a relatively small sample size on how impactful specific factors are on one’s chances of heart disease being fatal, so we came up with 4 research questions to focus our attention on.
+  
+‘ Which risk factors are most influential to America’s susceptibility to death by heart disease?’
+
+‘ How do different risk factors affect people’s rate of death from heart disease?’
+
+‘ What impact does age have on this?’
+
+‘And how can we prevent this going forward, ensuring more health for America’s population?’
+
+  Our choice of these questions is strategic. They combine several different aspects of heart health, allowing us to comprehensively analyze which group of people pose a higher risk of death from heart disease. Our research is meant for people of all ages and sexes - however, according to the CDC, there are risk factors for heart disease which cannot be controlled, such as age and/or family history. This being said, there are steps that can be taken to lower your risk by changing lifestyle factors that are in your control. By addressing these questions, we aim to provide insights that can enable individuals to make informed choices for heart health. Through this research, we hope to bridge the gap between data driven knowledge and real world impact in the ongoing battle against heart disease.
+
+### Data
+  Examining data sets about heart disease is crucial because it allows researchers to explore data about health disparities, and track the mortality rates and prevalence of heart disease in varying locations and by varying factors. We used these datasets to explore disparities in heart disease death rate, with a focus on the risk factors that affect it as well as age and location by county and city. These datasets can be utilized to understand the impact of heart disease on human populations, and identify the trends for heart disease deaths in a particular year - ours being 2019. Overall, examining these datasets closely allowed us to clearly see the correlation between heart disease deaths and the risk factors that influence it. 
+  
+  These datasets originate from reliable and ethical sources including the Center for Disease Control and Prevention (CDC) and the U.S. Census Bureau. The first dataset, titled “Rates and Trends in Heart Disease and Stroke Mortality”, was developed by the CDC and is a credible source because it is an official government agency responsible for collecting data and informing citizens about health-related topics. The second dataset, “Behavioral Risk Factors - Selected Metropolitan Area Risk Trends”, is also from the CDC and is reliable for the same reasons. The CDC is a part of the U.S. Department of Health and Human Services, and our dataset specifically focuses on behavioral risk factors associated with chronic disease - a topic that an institution like the CDC is an expert on. The third dataset is named the “Census Delineation Files'' which originates from the U.S. Census Bureau’s statistics. We used this data to match the location of statistical areas and   counties. 
+  
+  The variables included in the Heart Disease and Stroke Mortality dataset from the center of disease control are age, sex, race/ethnicity, geographic location, time period, heart disease mortality rates, and stroke mortality rates. The dataset includes information about individuals’ age, sex, and race/ethnicity, with each data point corresponding to the death rate within a specific population group. We chose to omit the sex and race/ethnicity from the equation to simplify our comparisons, and focus on the variables we were primarily interested in: the four risk factors. The geographic location represents the data related to specific regions, the time period variable shows the time period the data was collected, and the mortality rates variables represent the rates of deaths attributed to heart disease and strokes. 
+  
+  The variables in the behavior risk factors in selected metropolitan areas risk trends dataset include certain heart health related questions that were asked and various percentages of each location's population answered yes to the questions. Although there were many other risk factors and questions included in this data frame, we only included a few.  The metropolitan area variable utilizes the CBSA codes, which are codes for statistical areas. Shown below, the statistical area merges a number of adjacent counties to find the correlating data amongst all of them. 
+
+
+![Statistical Area Diagram](../week 11/CBSA diagram.png){width=50%}
+
+
+And finally, the ‘time period’ value provides the information for the time frame in which the data was collected.
+ 
+  The census delineation files from the US Census bureau includes variables such as metropolitan and micropolitan area, CSA title, county, state name, and state/ county code. The statistical area code indicates which statistical area it falls into, the CSA title represents the names of the Micropolitan areas, the county variables represent the names of the counties, and the state name variable represents the name of the state with the corresponding county. The state code refers to a unique two digit code representing the U.S. state, and the county code is a unique three digit code representing a county. 
+  
+The datasets are freely available for use as they are provided by government agencies.. Since both the CDC and the U.S. Census Bureau ensure that researchers can use these datasets as a public domain to perform research, there aren’t certain restrictions on who can access the data or for what purpose it can be used. Due to the credibility of these sources, there were no issues with data quality while working with these datasets. 
+
+  The population of the first dataset, which was about the rates and trends in heart disease and stroke mortality, includes all individuals in the United States who are susceptible to heart disease and stroke mortality. The sample of this data is populations from each state. The second dataset, titled “Behavioral Risk Factors - Selected Metropolitan Area Risk Trends”, consists of a population of the residents of selected metropolitan areas in the United States while the sample population is the subset of individuals within the selected metropolitan areas who participated in the Behavioral Risk Factor Surveillance System Survey. 
+Our final dataset includes data about the rate of deaths per heart disease case by location, and the prevalence of various health risk factors by location. Overall, the dataset only focuses on four risk factors including blood cholesterol, high blood pressure, physical activity, and smoking habits. Each row in the dataset represents heart disease death rates for a specific geographical location. The relevant variables are location ID, the topic of the data, population from age 35 to 64, and population from ages above 65. The location ID represents the identifier for the specific location, the topic of the data “all heart disease” remains constant, the population from age 35 to 64 represent the number of people in that age group, and the population from ages above 65 represent the number of people in that age group. Overall, the dataset does not contain any missing values. 
+
+### Methods
+  Our project consists of connecting two dataframes, one for the rate of deaths per heart disease case by location, and one for the prevalence of various health risk factors by location. 
+  
+![## Data Merging](../week 11/data merging.png)
+  
+  Because of the vastness of our risk factors dataframe, we decided to focus on 4 specific questions that relate to heart disease. Two are measurements taken directly from patients, and two are behavior choices that patients make. Although it may have been interesting to compare less associated risk factors, it was not practical to consider all risk factors included in that data frame. We looked at the following:
+  
+‘Adults who have had their blood cholesterol checked and have been told it was high’
+
+‘Adults who have been told they have high blood pressure’
+
+‘During the past month, did you participate in any physical activities?’
+
+‘Adults who are current smokers’
+
+  We also chose to narrow our heart disease data frame so that we could more clearly see the relationship between these risk factors and the death rate. The heart disease data frame broke down the death rate by race, sex, and age. We chose to focus on the ‘overall’ category for race and sex, in order to get a general understanding of trends in that location. Age did not have an overall category, and was important to consider due to the dramatic difference in effects of heart disease depending on age. By eliminating the specific races and sexes we were not able to look into the difference in effect these factors had on the death rate. We filtered out locations with null values for our chosen combination of factors, which further limited the span of our locations. Additionally the heart disease data frame had death rates broken down by ‘All heart disease’, ‘All stroke’, ‘Coronary heart disease (CHD)’, ‘Cardiovascular disease (CVD)’, by ‘Heart failure’. We chose to focus on all heart disease because it’s an umbrella term that encompasses many of the other heart diseases. And finally, we chose to only include data from 2019 in order to focus in on a specific year. Our two data frame measurements overlapped during the years 2011-2019. We chose 2019 because it is the most recent value. 
+  
+  Our two data frames provided a challenge by not having a ready to use overlapping key to connect them. They were both broken down by location, but as one can imagine, location can mean many things in different cases. Our risk factor data frame consisted of location by metropolitan and micropolitan statistical areas and division. Our heart disease data frame consisted of location by county. For some observations, the county name and metropolitan statistical area name would align, but for others this was not the case. Each data frame also had location codes, but because counties and metropolitan areas don’t exactly align, they weren’t something we could directly compare. Even though each location’s boundaries varied in some ways between the two data frames, we decided to compare them because they still allowed for a general understanding of trends in that area. 
+  To solve this problem we used a third data frame. This data frame included both metropolitan/micropolitan statistical areas and the corresponding county. By connecting the risk factor data frame to the location matching data frame, we were able to identify the county, which we then used to connect with the heart disease data frame. There were some non-ideal consequences of this. Because there were significantly less metropolitan/micropolitan statistical areas than counties, we were not able to consider the variety included in the heart disease data frame. Additionally, because the statistical areas don’t align exactly with counties, there were some cases where one statistical area would match to more than one county. 
+
+
+### Results 
+  The results from our data demonstrate that risk factors influence heart disease to varying degrees, with factors like high blood pressure having a strong effect on the number of heart disease deaths. To start off, we restructured our combined data frame into long form so we could accurately distinguish data by color and age. Splitting all four of our main graphs into two age groups allowed us to clearly see different trends in data on the same plot, and how different risk factors affect the two age groups differently. This distinction is apparent on the graph with 35-64 years old being red and 65+ being black.  The first plot examined the effect of participating in some sort of physical activity and the number of deaths due to heart disease. 
+
+  To nobody’s surprise, the more percent of the population who participated in exercise, the less people who died due to heart disease. The graph for this demonstrates a negative trend line where the percent of population who exercised on the x-axis increases while the number of deaths per 100,000 people decreases. Furthermore, we were surprised to find that the risk factor of high blood cholesterol didn’t have as much of an impact on the number of deaths as one would have imagined. The graphs for cholesterol show an almost-straight trend line.  Perhaps this is because high blood cholesterol doesn’t change much by location, making it difficult to see a trend between the percent of people with cholesterol and the number of heart disease deaths. 
+
+  With high blood pressure and smoking on the other hand, our graphs demonstrated a strong correlation between percent of population with the risk factors, and the number of deaths due to heart disease. Within the age group of 35-64, the more people that smoked or had high blood pressure, the more deaths per 100,000 that were illustrated.  Based on our data, it can be perceived that those with high blood pressure and those who smoke cigarettes are at a higher risk of dying from heart-related conditions. We were able to utilize R’s plotly library to examine the locations of each of our data points. We saw that some locations were clear outliers that didn’t match the rest of our data. What was it about these areas that placed them at a higher risk of death due to heart disease? For high blood pressure, Logan, UT had a low percentage, and Logan, UT also had the lowest percent of people who smoke. The fact that the same city appeared as an outlier for two different risk factors might represent a limitation in our data and the comparisons we made. Cities have varying factors that we didn’t take into account that may affect the percentage of people with risk factors - things like economic stability, total population of the area, politics, and lifestyle factors outside of what we looked at. This might be something to consider in the future of our research, to get more accurate comparisons across metropolitan areas. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE,
+                  	warning = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(plotly)
+
+
+heartdis <- read_delim("../../data/heartDisease&RiskFactors.csv")
+
+```
+
+
+```{r}
+heartdis_long <- heartdis %>% 
+  rename("Ages 35 to 64 years" = Ages_35_to_64_years,
+         "Ages 65 years and older" = Ages_65_years_and_older) %>% 
+  pivot_longer(c(`Ages 35 to 64 years`, `Ages 65 years and older`), names_to = "Age", values_to = "Deaths per 100,000 cases")
+
+#heartdis_long
+
+exercise <- heartdis_long %>%
+  rename("Exercise Rate (%)" = Yes_1) %>%
+  ggplot(aes(x = `Exercise Rate (%)`, y = `Deaths per 100,000 cases`, col = Age, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = TRUE) +
+  labs(title = "Exercise Rate versus Heart Disease Death Rate", 
+       x = "% of population who participated in any physical activities in the last month", 
+       y = "Number of Deaths per 100,000 Heart Disease Cases", 
+       col = "Age Group") + 
+  scale_color_manual(values = c("#ef3455", "black"))
+
+ggplotly(exercise)
+
+exercised_35_64 <- heartdis %>% 
+  rename("Deaths per 100,000 cases" = Ages_35_to_64_years,
+         "Exercise Rate (%)" = Yes_1) %>% 
+  ggplot(aes(x = `Exercise Rate (%)`, y = `Deaths per 100,000 cases`, text = LocationID)) + 
+  geom_point(alpha=0.5, color = "#ef3455") + 
+  geom_smooth(method=lm, se = FALSE, col="black", inherit.aes=FALSE, aes(`Exercise Rate (%)`, `Deaths per 100,000 cases`)) + 
+  labs(title = "Exercise Rate versus Heart Disease Death Rate in 35-64 year olds", 
+       x = "% of population who participated in any physical activities in the last month", 
+       y = "Number of Deaths per 100,000 Heart Disease Cases")
+
+ggplotly(exercised_35_64)
+
+```
+
+
+```{r}
+
+cholesterol <- heartdis_long %>%
+  rename("High Blood Cholesterol Rate (%)" = Yes_2) %>%
+  ggplot(aes(x = `High Blood Cholesterol Rate (%)`, y = `Deaths per 100,000 cases`, col = Age, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = TRUE) +
+  labs(title = "High Blood Cholesterol Rate versus Heart Disease Death Rate", 
+       x = "% of population with High Blood Cholesterol", 
+       y = "Number of Deaths per 100,000 Heart Disease Cases", 
+       col = "Age Group") + 
+  scale_color_manual(values = c("#ef3455", "black"))
+
+ggplotly(cholesterol)
+
+cholesterol_35_64 <- heartdis_long %>%
+  rename("High Blood Cholesterol Rate (%)" = Yes_2) %>% 
+  filter(Age == "Ages 35 to 64 years") %>% 
+  ggplot(aes(x = `High Blood Cholesterol Rate (%)`, y = `Deaths per 100,000 cases`, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = FALSE, color = "#ef3455") + 
+  geom_smooth(method = "lm", se = FALSE, col="black", inherit.aes=FALSE, aes(`High Blood Cholesterol Rate (%)`, `Deaths per 100,000 cases`)) +
+  labs(x = "% of population with High Blood Cholesterol", 
+       y = "Number of Deaths per 100,000 cases", 
+       title = "High Blood Cholesterol vs. Heart Disease Death Rate in 35-64 year olds") 
+
+ggplotly(cholesterol_35_64)
+```
+
+```{r}
+# CURRENTLY NOT USING PLOT
+
+#riskfactors <- heartdis_long %>%
+#  rename("Exercise Rate (%)" = Yes_1,
+#         "Current Smoker Rate (%)" = Yes_4) %>% 
+#  filter(Age == "Aged 35 to 64 years") %>% 
+#  ggplot(aes(x = `Exercise Rate (%)`, y = `Current Smoker Rate (%)`, text = LocationID, size = `Deaths per 100,000 cases`)) + 
+#  geom_point(alpha=0.5, show.legend = TRUE) +
+#  labs(title = "Effect of Smoking and Exercise in Heart Disease Deaths", x = "Percent of People who Exercised", y = "Percent of People who Smoke") +
+#  scale_color_manual(values = c("#ef3455", "black"))
+
+#riskfactors
+
+#ggplotly(riskfactors)
+```
+
+
+```{r}
+highbp <- heartdis_long %>%
+  rename("High Blood Pressure Rate (%)" = Yes_3) %>% 
+  ggplot(aes(x = `High Blood Pressure Rate (%)`, y = `Deaths per 100,000 cases`, col = Age, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = TRUE) +
+  labs(x = "% of population with High Blood Pressure", 
+       y = "Number of Deaths per 100,000 cases", 
+       title = "High Blood Pressure Rate versus Heart Disease Death Rate",
+       col = "Age Group") + 
+  scale_color_manual(values = c("#ef3455", "black"))
+
+ggplotly(highbp)
+
+#We decided to zoom in and look at the trend line for the younger age group of the two, ages 35 - 64, because this is the age group where risk factors would contribute to one's susceptability to heart disease and death.
+
+highbp_35_64 <- heartdis_long %>%
+  rename("High Blood Pressure Rate (%)" = Yes_3) %>% 
+  filter(Age == "Ages 35 to 64 years") %>% 
+  ggplot(aes(x = `High Blood Pressure Rate (%)`, y = `Deaths per 100,000 cases`, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = FALSE, color = "#ef3455") + 
+  geom_smooth(method = "lm", se = FALSE, col="black", inherit.aes=FALSE, aes(`High Blood Pressure Rate (%)`, `Deaths per 100,000 cases`)) +
+  labs(x = "% of population with High Blood Pressure", 
+       y = "Number of Deaths per 100,000 cases", 
+       title = "High BP Rate versus Heart Disease Death Rate in 35-64 year olds") 
+
+ggplotly(highbp_35_64)
+```
+
+
+```{r}
+smokers <- heartdis_long %>%
+  rename("Current Smoker Rate (%)" = Yes_4) %>%
+  ggplot(aes(x = `Current Smoker Rate (%)`, y = `Deaths per 100,000 cases`, col = Age, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = TRUE) +
+  labs(title = "Current Smoker Rate versus Heart Disease Death Rate", 
+       x = "% of people who are current smokers", 
+       y = "Number of Deaths per 100,000 cases", 
+       col = "Age Group") + 
+  scale_color_manual(values = c("#ef3455", "black"))
+
+ggplotly(smokers)
+
+smokers_35_64 <- heartdis_long %>%
+  rename("Current Smoker Rate (%)" = Yes_4) %>%
+  filter(Age == "Ages 35 to 64 years") %>% 
+  ggplot(aes(x = `Current Smoker Rate (%)`, y = `Deaths per 100,000 cases`, text = LocationID)) + 
+  geom_point(alpha=0.5, show.legend = FALSE, color = "#ef3455") + 
+  geom_smooth(method = "lm", se = FALSE, col="black", inherit.aes=FALSE, aes(`Current Smoker Rate (%)`, `Deaths per 100,000 cases`)) + 
+  labs(title = "Current Smoker Rate vs. Heart Disease Death Rate in 35-64 year olds", 
+       x = "% of people who are current smokers", 
+       y = "Number of Deaths per 100,000 case")
+
+ggplotly(smokers_35_64)
+```
+
+
+
+### Discuss
+Our research has shown us how strongly smoking, high-blood pressure, high cholesterol, and exercise may correlate to heart disease death rates. Our findings can better inform people of the health risks that are associated with these factors. The link between smoking and fatal heart disease conditions is clear, emphasizing the need for more anti-smoking initiatives and programs. These initiatives need to be implemented into our health systems more efficiently in order to reduce the amount of teens and young adults that start smoking, which can then bring down the smoker rates in the future. With lower smoker rates we can achieve lower heart disease death rates and move closer to our health goal as a society. 
+
+As well as smoking, high-blood pressure and high cholesterol also continue to be significant risk factors. High blood pressure and high cholesterol rates tend to be higher in areas occupied by low income residents and minorities which can be a sign of a lack of affordable nutritional food choices within our country. By emphasizing the need for change in health and nutrition initiatives we will be allowing these residents to be better informed on proper nutrition choices as well as working to make organic nutritional food options accessible to those without much financial resources. Similarly, high cholesterol and blood pressure levels are strongly linked to an increased likelihood of fatal heart conditions such as a heart attack. This illustrates that implementing proper dietary and nutrition initiatives can play a huge role in reducing the rate of heart disease related deaths, especially as heart attacks claim hundreds of thousands of lives each year.
+
+Our strongest conclusion through our findings was that there is a direct correlation between a lack of exercise and a higher risk of heart disease fatality. If government health programs can better the spreading of awareness on what protocols can be improved with more funding in order to better inform people of what health risks a lack of exercise can pose. By enabling people in all areas of this knowledge they will make a better effort of maintaining a healthy amount of physical activity, which in effect can decrease heart disease fatality rates. Our original dataset included factors such as race and sex however we decided to put these categories together and analyze them as a whole, which limited our data. In the future we can build off our findings to see if there are any different trends in specific groups such as sex and race. By narrowing down our data to specific groups we can not only better our results for one specific audience but also get a more in depth analysis of how strongly these risk factors affect each individual. We can also build off our current results to analyze what specific causes of heart disease related fatalities (heart attack, stroke, cardiac arrest, etc.) are most common and look into how strongly each of our chosen risk factors correlate.
+
+![<3](../week 11/heart-in-a-box.jpeg){width=50%}
+
