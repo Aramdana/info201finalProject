@@ -1,1 +1,5 @@
-# info201finalProject
+# README
+
+Our data frame merged the number of heart disease deaths per 100,000 people in varying locations with percentages of the population who possessed certain risk factors. We utilized the risk factor variables in the data frame to compare different lifestyle choices and chronic diseases with the rate of death due to heart disease. We used the dplyr, ggplot and plotly libraries to accurately display the correlation between all of the following factors: physical activity, high cholesterol, blood pressure, and smoking. We decided to zoom in and look at the trend line for the younger age group of the two, ages 35 - 64, because this is the age group where risk factors would contribute to one's susceptibility to heart disease and death. The graph below showcases a positive trend line between the percent of population with high blood pressure, and the number of deaths due to heart disease. From this, we can draw the conclusion that high BP is a strong risk factor and contributes strongly to heart disease related deaths.
+
+![Screenshot (502)](https://github.com/Aramdana/info201finalProject/assets/42353199/ad985c52-d4fa-4812-92f4-ed15244e0bbd)
